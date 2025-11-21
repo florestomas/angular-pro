@@ -3,6 +3,14 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+
+    "baseUrl": ".",
+    "paths":{
+      "@/*": ["src/app/*"], // con eso es un atajo para escribir enves de todo el directorio src/app/ escribir @/
+    },
+
+
+
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
