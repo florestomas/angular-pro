@@ -1,4 +1,4 @@
-import { Attribute, Component, HostBinding, input, OnInit } from '@angular/core';
+import { Attribute, Component, HostBinding, input, OnInit, ViewEncapsulation } from '@angular/core';
 import { ɵEmptyOutletComponent } from '@angular/router';
 
 @Component({
@@ -15,15 +15,27 @@ import { ɵEmptyOutletComponent } from '@angular/router';
 })
 export class CalculatorButton implements OnInit {
   public isCommmand = input(false, {
-    transform: (value: boolean | string) => {
-      return value === true || value === 'true';
+    transform: (value: boolean | string | '') => {
+      return value === true || value === 'true' || value === '';
     },
   });
+
+  public isDoubleSize = input(false, {
+    transform: (value: boolean | string) => {
+      return value === true || value === 'true' || value === '';
+    },
+  });
+
   ngOnInit(): void {
+    // Funcion que se ejecuta cuando el componente se inicializa
     console.log(this.isCommmand());
   }
 
-  @HostBinding('class.is-command') get commandStyle() {
+  /* @HostBinding('class.is-command') get commandStyle() {
     return this.isCommmand();
+  } */
+
+  @HostBinding('class.w-2/4') get doubleSizeStyle() {
+    return this.isDoubleSize();
   }
 }

@@ -7,3 +7,8 @@ button {
 .is-command {
   @apply bg-indigo-700/20;
 }
+
+/* OBSOLETO
+::ng-deep .is-command {
+  @apply bg-indigo-700/20;
+} */
