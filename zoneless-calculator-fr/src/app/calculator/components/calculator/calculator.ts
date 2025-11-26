@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CalculatorButton } from '../calculator-button/calculator-button';
 
 @Component({
@@ -13,9 +13,19 @@ import { CalculatorButton } from '../calculator-button/calculator-button';
       }   aca no va porque afeca a todas las clases*/
     `,
   ],
+  host: {
+    '(document:keyup)': 'handleKeyboardEvent($event)',
+  },
 })
 export class Calculator {
   handleClick(key: string) {
     console.log({ key });
+  }
+
+  // @HostListener('document:keyup', ['$event']) Retrocompatilibidad
+  handleKeyboardEvent(event: KeyboardEvent) {
+    this.handleClick(event.key);
+
+    console.log(event.key);
   }
 }

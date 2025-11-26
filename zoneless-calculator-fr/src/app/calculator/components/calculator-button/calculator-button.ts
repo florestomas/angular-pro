@@ -8,6 +8,7 @@ import {
   viewChild,
   ViewEncapsulation,
   ElementRef,
+  signal,
 } from '@angular/core';
 import { ɵEmptyOutletComponent } from '@angular/router';
 
@@ -24,6 +25,8 @@ import { ɵEmptyOutletComponent } from '@angular/router';
   },
 })
 export class CalculatorButton /* implements OnInit */ {
+  public isPressed = signal(false);
+
   public onClick = output<string>();
 
   public contentValue = viewChild<ElementRef<HTMLButtonElement>>('button');
@@ -60,5 +63,18 @@ export class CalculatorButton /* implements OnInit */ {
   // tamaño del =
   @HostBinding('class.w-2/4') get doubleSizeStyle() {
     return this.isDoubleSize();
+  }
+
+  public keyboardPressedStyle(key: string) {
+    if (!this.contentValue()) return;
+
+    const value = this.contentValue()!.nativeElement.innerText;
+
+    if (value !== key) return;
+
+    this.isPressed.set(true);
+    setTimeout(() => {
+      this.isPressed.set(false);
+    }, 100);
   }
 }
