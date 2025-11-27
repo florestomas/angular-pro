@@ -8,7 +8,7 @@ const specialOperators = ['+/-', '%', '.', '=', 'C', 'Backspace'];
   providedIn: 'root',
 })
 export class calculatorService {
-  public resultText = signal('10');
+  public resultText = signal('0');
   public subResultText = signal('0');
   public lastOperator = signal('+');
 
@@ -50,15 +50,50 @@ export class calculatorService {
       this.resultText.set('0');
       return;
     }
-    //Validar punto decimal
-    if (value == '.' && !this.resultText().includes('.')) {
-      if (this.resultText() == '0' || this.resultText() == '') {
-        this.resultText.update((text) => text + '0.');
-      }
+    // Limite numero de caracteres
+    if (this.resultText().length >= 10) {
+      console.log('Max lenght reached');
       return;
     }
 
-    this.resultText.update((text) => text + '.');
+    if (value == '.' && !this.resultText().includes('.')) {
+      //Validar punto decimal
+      if (this.resultText() == '0' || this.resultText() == '') {
+        this.resultText.set('0.');
+        return;
+      }
+      this.resultText.update((text) => text + '.');
+      return;
+    }
+
+    //Manejo de el cero inical
+    if (value === '0' && (this.resultText() === '0' || this.resultText() === '-0')) {
+      return;
+    }
+
+    //Cambio de signo
+    if (value === '+/-') {
+      if (this.resultText().includes('-')) {
+        this.resultText.update((text) => text.slice(1));
+        return;
+      }
+      this.resultText.update((text) => '-' + text);
+      return;
+    }
+
+    //Numeros
+    if (numbers.includes(value)) {
+      if (this.resultText() === '0') {
+        this.resultText.set(value);
+        return;
+      }
+      if (this.resultText() === '-0') {
+        this.resultText.set('-' + value);
+        return;
+      }
+      this.resultText.update((text) => text + value);
+      return;
+    }
   }
 
   //  constructor() { }
