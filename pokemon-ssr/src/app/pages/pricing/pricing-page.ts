@@ -16,7 +16,7 @@ export default class PricingPage implements OnInit {
     /* if (isPlatformBrowser(this.platform)) {
       document.title = 'Pricing Page';
     } */
-
+    //ssr
     this.title.setTitle('Pricing Page');
     this.meta.updateTag({ name: 'description', content: 'Este es mi Pricing Page' });
     this.meta.updateTag({ name: 'og:title', content: 'About Page' });
