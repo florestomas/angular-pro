@@ -21,7 +21,7 @@ export const routes: Routes = [
     },
   },
   {
-    path: '/',
+    path: ' ',
     redirectTo: () => {
       return 'about';
     },
