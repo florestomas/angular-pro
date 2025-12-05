@@ -20,4 +20,10 @@ export const routes: Routes = [
       return 'about';
     },
   },
+  {
+    path: '/',
+    redirectTo: () => {
+      return 'about';
+    },
+  },
 ];
