@@ -19,7 +19,7 @@ export default class PricingPage implements OnInit {
     //ssr
     this.title.setTitle('Pricing Page');
     this.meta.updateTag({ name: 'description', content: 'Este es mi Pricing Page' });
-    this.meta.updateTag({ name: 'og:title', content: 'About Page' });
+    this.meta.updateTag({ name: 'og:title', content: 'Pricing Page' });
     this.meta.updateTag({ name: 'keywords', content: 'Hola,Mundo,Fernando,Tomas,AKA,Mansi' });
   }
 }

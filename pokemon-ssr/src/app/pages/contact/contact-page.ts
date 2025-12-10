@@ -13,7 +13,7 @@ export default class ContactPage implements OnInit {
   ngOnInit(): void {
     this.title.setTitle('Contact Page');
     this.meta.updateTag({ name: 'description', content: 'Este es mi Contact Page' });
-    this.meta.updateTag({ name: 'og:title', content: 'About Page' });
+    this.meta.updateTag({ name: 'og:title', content: 'Content Page' });
     this.meta.updateTag({ name: 'keywords', content: 'Hola,Mundo,Fernando,Tomas,AKA,Mansi' });
   }
 }
