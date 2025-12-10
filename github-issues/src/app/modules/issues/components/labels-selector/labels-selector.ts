@@ -1,10 +1,9 @@
 import { Component, input } from '@angular/core';
 import { GitHubLabel } from '../../interfaces';
-import { NgStyle } from '../../../../../../node_modules/@angular/common/common_module.d';
 
 @Component({
   selector: 'issues-labels-selector',
-  imports: [NgStyle],
+  imports: [],
   templateUrl: './labels-selector.html',
 })
 export class LabelsSelector {
