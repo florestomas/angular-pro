@@ -12,7 +12,7 @@ export const getIssues = async (): Promise<GitHubIssue[]> => {
   try {
     const resp = await fetch(`${BASE_URL}/issues`, {
       headers: {
-        Autorization: `Bearer ${GITHUB_TOKEN}`,
+        Authorization: `Bearer ${GITHUB_TOKEN}`,
       },
     });
 

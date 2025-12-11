@@ -11,7 +11,7 @@ export const getLabels = async (): Promise<GitHubLabel[]> => {
   try {
     const resp = await fetch(`${BASE_URL}/labels`, {
       headers: {
-        Autorization: `Bearer ${GITHUB_TOKEN}`,
+        Authorization: `Bearer ${GITHUB_TOKEN}`,
       },
     });
 
