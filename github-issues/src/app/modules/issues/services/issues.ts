@@ -9,17 +9,34 @@ import { State } from '../interfaces';
 export class Issues {
   selectedState = signal<State>(State.All);
 
+  selectedLabels = signal(new Set<string>()); // Set - manejar un arreglo como una columna de datos q no se repite
+
   LabelsQuery = injectQuery(() => ({
     queryKey: ['todos'],
     queryFn: () => getLabels(),
   }));
 
   issuesQuery = injectQuery(() => ({
-    queryKey: ['issues', this.selectedState()],
-    queryFn: () => getIssues(this.selectedState()),
+    queryKey: [
+      'issues',
+      { state: this.selectedState(), selectedLabels: [...this.selectedLabels()] },
+    ],
+    queryFn: () => getIssues(this.selectedState(), [...this.selectedLabels()]),
   }));
 
   showIssuesByState(state: State) {
     this.selectedState.set(state);
+  }
+
+  toggleLabel(label: string) {
+    const labels = this.selectedLabels();
+
+    if (labels.delete(label)) {
+      labels.delete(label);
+    } else {
+      labels.add(label);
+    }
+
+    this.selectedLabels.set(new Set(labels));
   }
 }
